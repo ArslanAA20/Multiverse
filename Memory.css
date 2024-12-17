@@ -1,0 +1,98 @@
+/* styles.css */
+/* Allgemeine Stile */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f2f2f2;
+    flex-direction: column;  /* Wichtig: sorgt dafür, dass die Überschrift oben und der Spielbereich unten angezeigt werden */
+}
+
+/* Stil für die Überschrift */
+h1 {
+    font-family: 'Arial', sans-serif;
+    text-align: center;        /* Zentriert den Text */
+    font-size: 3em;            /* Größere Schriftgröße für die Überschrift */
+    color: #000000;            /* Grüner Farbton */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Container für das Spiel */
+.game-container {
+    text-align: center;
+}
+
+/* Das Spielfeld */
+.memory-board {
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(4, 100px);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Stil für die Karten */
+.card {
+    width: 100px;
+    height: 100px;
+    background-color: #782ca7;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.2s ease; /* Übergangseffekt für Hover */
+}
+
+/* Stil für umgedrehte Karten */
+.card.flipped {
+    background-color: white;
+    color: black;
+}
+
+/* Stil für übereinstimmende Karten */
+.card.matched {
+    background-color: #30b027;
+    color: white;
+}
+
+/* Hover-Effekt für Karten */
+.card:hover {
+    transform: scale(1.1);  /* Vergrößert die Karte leicht */
+}
+
+/* Neustart-Button */
+.restart-btn {
+    padding: 10px 20px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease; /* Übergangseffekt für Hintergrundfarbe */
+}
+
+/* Hover-Effekt für den Neustart-Button */
+.restart-btn:hover {
+    background-color: #45a049;
+}
+
+/* Zusätzliche Stile für den Restart-Button, wenn er gedrückt wird */
+.restart-btn:active {
+    background-color: #388E3C;  /* Etwas dunklerer Grünton, wenn der Button gedrückt wird */
+}

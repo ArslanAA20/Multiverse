@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guessing Random Number</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column; /* Ensures everything stacks vertically */
+        }
+        input[type="number"] {
+            padding: 20px;
+            font-size: 16px;
+            width: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        #result {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        #restartButton {
+            display: none; /* Hide the restart button initially */
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Loop Game</h1>
+    <p>Guess the correct number between 1 and 10!</p>
+
+    <div>
+        <input type="number" id="userGuess" placeholder="1-10" min="1" max="10" />
+    </div>
+    <button id="checkButton" onclick="checkGuess()">Check</button>
+
+    <div id="result"></div>
+    <button id="restartButton" onclick="restartGame()">Restart Game</button>
+
+    <script>
+        let correctNumber;
+        let attempts;
+        const maxAttempts = 3;
+
+        // Function to start a new game
+        function startGame() {
+            correctNumber = Math.floor(Math.random() * 10) + 1;
+            attempts = 0;
+            document.getElementById("result").textContent = "";
+            document.getElementById("userGuess").disabled = false;
+            document.getElementById("checkButton").disabled = false;
+            document.getElementById("restartButton").style.display = "none"; // Hide restart button initially
+            document.getElementById("checkButton").style.display = "inline"; // Show check button
+        }
+
+        // Start the first game
+        startGame();
+
+        function checkGuess() {
+            // Get user input
+            const userGuess = parseInt(document.getElementById("userGuess").value);
+
+            // Result div
+            const resultDiv = document.getElementById("result");
+
+            // Check if the input is within the valid range
+            if (userGuess < 1 || userGuess > 10 || isNaN(userGuess)) {
+                resultDiv.textContent = "Please choose a number between 1 and 10.";
+                resultDiv.style.color = "orange";
+                return;
+            }
+
+            // Increment attempts
+            attempts++;
+
+            // Check if the user guessed the correct number
+            if (userGuess === correctNumber) {
+                resultDiv.textContent = "The number " + correctNumber + " is correct! You won!";
+                resultDiv.style.color = "green";
+                endGame();
+            } else {
+                if (attempts < maxAttempts) {
+                    resultDiv.textContent = "Sorry, wrong guess. Try again! (Attempt " + attempts + " of " + maxAttempts + ")";
+                    resultDiv.style.color = "red";
+                } else {
+                    resultDiv.textContent = "Sorry, wrong guess! The correct number was " + correctNumber + ".";
+                    resultDiv.style.color = "red";
+                    endGame();
+                }
+            }
+
+            // Clear the input field
+            document.getElementById("userGuess").value = "";
+        }
+
+        // End the game and show the restart button
+        function endGame() {
+            document.getElementById("userGuess").disabled = true; // Disable input after game ends
+            document.getElementById("checkButton").style.display = "none"; // Hide check button
+            document.getElementById("restartButton").style.display = "block"; // Show restart button
+        }
+
+        // Restart the game
+        function restartGame() {
+            startGame(); // Reset game variables and restart the game
+        }
+    </script>
+</body>
+</html>

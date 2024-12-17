@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interaktives Sudoku</title>
+  <link rel="stylesheet" href="Sudoku.css">
+</head>
+<body>
+  <h1>Sudoku Spiel</h1>
+
+  <div class="controls">
+    <label for="difficulty">Schwierigkeitsgrad:</label>
+    <select id="difficulty">
+      <option value="easy">Einfach</option>
+      <option value="medium">Mittel</option>
+      <option value="hard">Schwierig</option>
+    </select>
+
+    <button onclick="startGame()">Spiel starten</button>
+    <button onclick="checkSolution()">Lösung überprüfen</button>
+    <button onclick="resetGame()">Zurücksetzen</button>
+  </div>
+
+  <div id="sudoku-board" class="sudoku-board"></div>
+
+  <div id="status"></div>
+
+
+  <script src="Sudoku.js"></script>
+</body>
+</html>
